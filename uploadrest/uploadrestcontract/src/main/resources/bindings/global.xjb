@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Global bindings file declarations override the default binding rules. 
+		Here we override the dateTime type to the java.util.Date type. -->
+	<jaxb:globalBindings>
+		<jaxb:serializable uid="1" />
+		<!-- Date Adapter -->
+		<jaxb:javaType xmlns="http://java.sun.com/xml/ns/jaxb"
+			name="java.util.Date" xmlType="xs:dateTime"
+			parseMethod="com.psethi.api.adapter.XsdDateTimeUtils.parseDate"
+			printMethod="com.psethi.api.adapter.XsdDateTimeUtils.printDate" />
+		<!-- Date Time Adapter -->
+		<jaxb:javaType xmlns="http://java.sun.com/xml/ns/jaxb"
+			name="java.util.Date" xmlType="xs:date"
+			parseMethod="com.psethi.api.adapter.XsdDateTimeUtils.parseDate"
+			printMethod="com.psethi.api.adapter.XsdDateTimeUtils.printDate" />
+
+	</jaxb:globalBindings>
+
+</jaxb:bindings>

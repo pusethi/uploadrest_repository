@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+    <!-- Declared two properties, named log-path and archive  that will be used by the appenders. -->
+    <Properties>
+        <Property name="log-path">C:/uploadLogs</Property>
+    </Properties>
+    
+    
+    <!-- We declared the <Appenders>  tag enclosing the <Console>  and <File>  tags for the console and 
+    file appenders respectively. The target attribute of the <Console>  tag specifies that log messages 
+    will be sent to the system console. The filename  attribute of the <File>  tag specifies the name 
+    and location of the log file to which log messages will be sent. Both the console and file appenders 
+    use pattern layout and specifies the pattern string using the <PatternLayout>  and <Pattern>  tags respectively -->
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %c{1}:%L - %msg%n
+                </pattern>>
+            </PatternLayout>
+        </Console>
+        <File name="File-Appender" fileName="/${log-path}/uploadrestweb.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %c{1}:%L - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    
+    <!-- Additivity is set to false to avoid child loggers inherit their parent's appenders. -->
+    <Loggers>
+           <Logger name="com.psethi.api" level="debug" additivity="false">
+               <AppenderRef ref="File-Appender"/>
+               <!-- <AppenderRef ref="RollingFile-Appender"/>  -->
+               <AppenderRef ref="Console-Appender"/>
+           </Logger>
+           <!-- Set the hibernate logs to level 'error' to avoid verbose -->
+           <logger name="org.hibernate" level="error" additivity="false">
+               <AppenderRef ref="File-Appender"/>
+               <!--  <AppenderRef ref="RollingFile-Appender"/>  -->
+			   <AppenderRef ref="Console-Appender"/>
+		   </logger>           
+		   <!-- Set the springframework logs to level 'error' to avoid verbose -->
+		   <logger name="org.springframework" level="error" additivity="false">
+               <AppenderRef ref="File-Appender"/>
+             <!--   <AppenderRef ref="RollingFile-Appender"/>  -->
+			   <AppenderRef ref="Console-Appender"/>
+		   </logger>
+		   <!-- Set the Swagger logs to level 'error' to avoid verbose -->
+           <logger name="springfox.documentation" level="error" additivity="false">
+               <AppenderRef ref="File-Appender"/>
+               <!--  <AppenderRef ref="RollingFile-Appender"/>  -->
+			   <AppenderRef ref="Console-Appender"/>
+		   </logger>
+	        <Root level="debug">
+               <AppenderRef ref="File-Appender"/>
+            <!--    <AppenderRef ref="RollingFile-Appender"/> -->
+               <AppenderRef ref="Console-Appender"/>
+	        </Root>
+    </Loggers>
+</Configuration>

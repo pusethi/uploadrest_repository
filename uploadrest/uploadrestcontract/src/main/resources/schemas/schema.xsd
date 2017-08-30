@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" targetNamespace="http://api.psethi.com/contract/v1_0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	elementFormDefault="unqualified" jaxb:version="2.1"
+	xmlns:annox="http://annox.dev.java.net" jaxb:extensionBindingPrefixes="xjc annox"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+
+	<xs:complexType name="FileMetaDataDto">
+		<xs:annotation>
+			<xs:appinfo>
+				<annox:annotate>
+					@javax.xml.bind.annotation.XmlRootElement
+				</annox:annotate>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="description" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="authorName" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="fileName" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="uploadTimeStamp" type="xs:dateTime"
+				minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<annox:annotate target="field">
+							@com.fasterxml.jackson.annotation.JsonFormat(pattern="yyyy-MM-dd")
+						</annox:annotate>
+						<annox:annotate target="field">
+							@com.fasterxml.jackson.databind.annotation.JsonSerialize(using=com.psethi.api.adapter.XsdDateTimeUtils.class)
+						</annox:annotate>
+						<annox:annotate target="target">
+							@javax.annotation.Generated({"XJC","JAXB2
+							Annotate Plugin"})
+						</annox:annotate>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>
